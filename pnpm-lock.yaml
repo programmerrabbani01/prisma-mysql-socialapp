@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      '@tabler/icons-react':
+        specifier: ^3.29.0
+        version: 3.29.0(react@19.0.0-rc-cd22717c-20241013)
       next:
         specifier: 15.0.0-rc.1
         version: 15.0.0-rc.1(@babel/core@7.26.0)(babel-plugin-react-compiler@19.0.0-beta-decd7b8-20250118)(react-dom@19.0.0-rc-cd22717c-20241013(react@19.0.0-rc-cd22717c-20241013))(react@19.0.0-rc-cd22717c-20241013)
@@ -17,6 +20,9 @@ importers:
       react-dom:
         specifier: 19.0.0-rc-cd22717c-20241013
         version: 19.0.0-rc-cd22717c-20241013(react@19.0.0-rc-cd22717c-20241013)
+      react-icons:
+        specifier: ^5.4.0
+        version: 5.4.0(react@19.0.0-rc-cd22717c-20241013)
     devDependencies:
       '@babel/preset-react':
         specifier: ^7.26.3
@@ -412,6 +418,14 @@ packages:
 
   '@swc/helpers@0.5.13':
     resolution: {integrity: sha512-UoKGxQ3r5kYI9dALKJapMmuK+1zWM/H17Z1+iwnNmzcJRnfFuevZs375TA5rW31pu4BS4NoSy1fRsexDXfWn5w==}
+
+  '@tabler/icons-react@3.29.0':
+    resolution: {integrity: sha512-jaa3b3j91CplY7TPgx/Gj/e+PcOnQgYiK6c5qtp1P0ytfKM5WPc1qtXyRLE3NcYlfxS2Pcst4YGy1vUML7SjbQ==}
+    peerDependencies:
+      react: '>= 16'
+
+  '@tabler/icons@3.29.0':
+    resolution: {integrity: sha512-VWNINymdmhay3MDvWVREmRwuWLSrX3YiInKvs5L4AHRF4bAfJabLlEReE0BW/XFsBt22ff8/C8Eam/LXlF97mA==}
 
   '@types/json5@0.0.29':
     resolution: {integrity: sha512-dRLjCWHYg4oaA77cxO64oO+7JwCwnIzkZPdrrC71jQmQtlhM556pwKo5bUzqvZndkVbeFLIIi+9TC40JNF5hNQ==}
@@ -1510,6 +1524,11 @@ packages:
     peerDependencies:
       react: 19.0.0-rc-cd22717c-20241013
 
+  react-icons@5.4.0:
+    resolution: {integrity: sha512-7eltJxgVt7X64oHh6wSWNwwbKTCtMfK35hcjvJS0yxEAhPM8oUKdS3+kqaW1vicIltw+kR2unHaa12S9pPALoQ==}
+    peerDependencies:
+      react: '*'
+
   react-is@16.13.1:
     resolution: {integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==}
 
@@ -2205,6 +2224,13 @@ snapshots:
   '@swc/helpers@0.5.13':
     dependencies:
       tslib: 2.8.1
+
+  '@tabler/icons-react@3.29.0(react@19.0.0-rc-cd22717c-20241013)':
+    dependencies:
+      '@tabler/icons': 3.29.0
+      react: 19.0.0-rc-cd22717c-20241013
+
+  '@tabler/icons@3.29.0': {}
 
   '@types/json5@0.0.29': {}
 
@@ -3511,6 +3537,10 @@ snapshots:
     dependencies:
       react: 19.0.0-rc-cd22717c-20241013
       scheduler: 0.25.0-rc-cd22717c-20241013
+
+  react-icons@5.4.0(react@19.0.0-rc-cd22717c-20241013):
+    dependencies:
+      react: 19.0.0-rc-cd22717c-20241013
 
   react-is@16.13.1: {}
 

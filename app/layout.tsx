@@ -88,8 +88,7 @@ const FiraCode = localFont({
 
 export const metadata: Metadata = {
   title: "Social Media App",
-  description:
-    "This Social Media App Creating By Using Next.Js , Prisma & MySQL",
+  description: "This Social Media App Created By Using Next.Js, Prisma & MySQL",
 };
 
 export default function RootLayout({

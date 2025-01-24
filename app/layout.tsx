@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import NavBar from "@/components/Menu/NavBar";
+import { ClerkProvider } from "@clerk/nextjs";
 
 // Define Exo2 font family
 const Exo2 = localFont({
@@ -98,15 +99,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`${Exo2.variable} ${FiraCode.variable} antialiased`}>
-        <div className="w-full bg-white px-4 md:px-8 lg:px-16 xl:px-32 2xl:px-64 ">
-          <NavBar />
-        </div>
-        <div className="bg-slate-100 px-4 md:px-8 lg:px-16 xl:px-32 2xl:px-64 ">
-          {children}
-        </div>
-      </body>
-    </html>
+    <ClerkProvider>
+      <html lang="en">
+        <body className={`${Exo2.variable} ${FiraCode.variable} antialiased`}>
+          <div className="w-full bg-white px-4 md:px-8 lg:px-16 xl:px-32 2xl:px-64 ">
+            <NavBar />
+          </div>
+          <div className="bg-slate-100 px-4 md:px-8 lg:px-16 xl:px-32 2xl:px-64 ">
+            {children}
+          </div>
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }

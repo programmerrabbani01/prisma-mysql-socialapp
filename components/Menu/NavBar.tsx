@@ -74,10 +74,10 @@ export default function NavBar() {
           </ClerkLoading>
           <ClerkLoaded>
             <SignedIn>
-              <div className="cursor-pointer">
+              <div className="cursor-pointer hidden sm:block">
                 <Image src="/images/people.png" alt="" width={20} height={20} />
               </div>
-              <div className="cursor-pointer">
+              <div className="cursor-pointer hidden sm:block">
                 <Image
                   src="/images/messages.png"
                   alt=""
@@ -85,7 +85,7 @@ export default function NavBar() {
                   height={20}
                 />
               </div>
-              <div className="cursor-pointer">
+              <div className="cursor-pointer hidden sm:block">
                 <Image
                   src="/images/notifications.png"
                   alt=""

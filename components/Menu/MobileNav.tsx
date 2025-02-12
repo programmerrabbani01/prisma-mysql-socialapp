@@ -29,7 +29,7 @@ export default function MobileNav() {
         ></div>
       </div>
       {isOpen && (
-        <div className="absolute left-0 top-20 w-full h-[calc(100vh-80px)] bg-white flex flex-col items-center justify-center text-xl gap-8 font-FiraCode font-medium capitalize z-10 ">
+        <div className="absolute left-0 top-20 w-full h-[calc(100vh-80px)] bg-white flex flex-col items-center justify-center text-xl gap-8 font-FiraCode font-medium capitalize z-20 ">
           <Link href="/">Home</Link>
           <Link href="/">Friends</Link>
           <Link href="/">Groups</Link>

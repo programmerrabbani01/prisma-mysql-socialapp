@@ -15,9 +15,7 @@ export default function Post() {
               height={40}
               className="w-10 h-10 rounded-full object-cover"
             />
-            <span className="font-medium font-FiraCode">
-              G M GOLAM RABBANBI
-            </span>
+            <span className="font-bold font-Exo2">G M GOLAM RABBANBI</span>
           </div>
           <Image src="/images/more.png" alt="" width={16} height={16} />
         </div>

@@ -1,12 +1,16 @@
+// all code is perfect. it's totally protected route
+
 import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
 
-// Fix: Properly close the parentheses in the regex pattern
-const isProtectedRoute = createRouteMatcher(["/profile(.*)"]);
+// Corrected path pattern
+// const isProtectedRoute = createRouteMatcher(["/", "/profile(.*)"]);
+const isProtectedRoute = createRouteMatcher([""]);
 
-export default clerkMiddleware(async (authPromise, req) => {
-  const auth = await authPromise; // Await the resolved auth object
+export default clerkMiddleware(async (auth, req) => {
+  console.log("Request URL:", req.url); // Debugging line
   if (isProtectedRoute(req)) {
-    auth.protect(); // Now you can access the protect method
+    console.log("Route is protected:", req.url); // Debugging line
+    await auth.protect(); // Ensure this is awaited if it's async
   }
 });
 

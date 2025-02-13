@@ -7,7 +7,7 @@ export default function FriendsRequest() {
       <div className="p-4 bg-white shadow-md rounded-lg text-sm flex flex-col gap-4">
         {/* top */}
         <div className="flex justify-between items-center">
-          <span className="font-Exo2 font-semibold text-gray-500">
+          <span className="font-Exo2 font-bold text-gray-500">
             Friend Request
           </span>
           <Link
@@ -83,7 +83,9 @@ export default function FriendsRequest() {
               height={40}
               className="w-10 h-10 rounded-full object-cover"
             />
-            <span className=" font-FiraCode font-semibold">GOLAM RABBANI</span>
+            <span className=" font-FiraCode font-semibold">
+              G M GOLAM RABBANI
+            </span>
           </div>
           <div className="flex gap-3 justify-end">
             <Image

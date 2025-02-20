@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-export default function AddFriend({ size }: { size: "sm" | "md" | "lg" }) {
+export default function Ads({ size }: { size: "sm" | "md" | "lg" }) {
   return (
     <>
       <div className="p-4 bg-white shadow-md rounded-lg text-sm flex flex-col gap-4">
@@ -38,7 +38,7 @@ export default function AddFriend({ size }: { size: "sm" | "md" | "lg" }) {
             </span>
           </div>
           <p
-            className={`font-FiraCode font-semibold text-gray-400 text-justify ${
+            className={`font-FiraCode font-semibold text-gray-400  ${
               size === "sm" ? "text-xs" : "text-sm"
             }`}
           >

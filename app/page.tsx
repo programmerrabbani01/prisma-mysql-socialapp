@@ -10,7 +10,7 @@ export default function Home() {
       <div className="flex gap-6 pt-6">
         {/* left */}
         <div className="hidden xl:block w-[20%]">
-          <HomeLeft />
+          <HomeLeft type="home" />
         </div>
         {/* center */}
         <div className="w-full lg:w-[70%] xl:w-[50%]">

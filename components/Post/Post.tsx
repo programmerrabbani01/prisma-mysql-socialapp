@@ -39,7 +39,7 @@ export default function Post() {
         {/* interaction */}
         <div className="flex items-center justify-between text-sm my-4">
           <div className="flex gap-8">
-            <div className="flex items-center gap-4 bg-slate-100 p-2 rounded-xl">
+            <div className="flex items-center gap-4 bg-slate-100 p-[.4rem]  rounded-xl">
               <Image
                 src="/images/like.png"
                 alt=""
@@ -52,7 +52,7 @@ export default function Post() {
                 123 <span className="hidden md:inline">Likes</span>
               </span>
             </div>
-            <div className="flex items-center gap-4 bg-slate-100 p-2 rounded-xl">
+            <div className="flex items-center gap-4 bg-slate-100 p-[.4rem]  rounded-xl">
               <Image
                 src="/images/comment.png"
                 alt=""
@@ -67,7 +67,7 @@ export default function Post() {
             </div>
           </div>
           <div className="">
-            <div className="flex items-center gap-4 bg-slate-100 p-2 rounded-xl">
+            <div className="flex items-center gap-4 bg-slate-100 p-[.4rem] rounded-xl">
               <Image
                 src="/images/share.png"
                 alt=""

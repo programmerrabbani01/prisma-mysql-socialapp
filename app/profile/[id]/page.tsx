@@ -1,6 +1,7 @@
 import Feed from "@/components/Feed/Feed.tsx";
 import HomeLeft from "@/components/HomeLeft/HomeLeft.tsx";
 import HomeRight from "@/components/HomeRight/HomeRight.tsx";
+import ProfileMain from "@/components/Profile/ProfileMain.tsx";
 
 export default function ProfilePage() {
   return (
@@ -13,6 +14,7 @@ export default function ProfilePage() {
         {/* center */}
         <div className="w-full lg:w-[70%] xl:w-[50%]">
           <div className="flex flex-col gap-6">
+            <ProfileMain />
             <Feed />
           </div>
         </div>

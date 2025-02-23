@@ -35,12 +35,7 @@ export default function HomeLeft({ type }: { type: "home" | "profile" }) {
             href=""
             className="flex items-center gap-4 p-2 rounded-lg hover:bg-slate-100 transition-all duration-300"
           >
-            <Image
-              src="/images/marketplace.png"
-              alt=""
-              width={20}
-              height={20}
-            />
+            <Image src="/images/market.png" alt="" width={20} height={20} />
             <span className="text-sm text-gray-500 font-FiraCode font-medium">
               Marketplace
             </span>
@@ -106,7 +101,7 @@ export default function HomeLeft({ type }: { type: "home" | "profile" }) {
             href=""
             className="flex items-center gap-4 p-2 rounded-lg hover:bg-slate-100 transition-all duration-300"
           >
-            <Image src="/images/lits.png" alt="" width={20} height={20} />
+            <Image src="/images/lists.png" alt="" width={20} height={20} />
             <span className="text-sm text-gray-500 font-FiraCode font-medium">
               Lists
             </span>

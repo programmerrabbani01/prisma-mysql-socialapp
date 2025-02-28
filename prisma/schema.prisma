@@ -1,0 +1,142 @@
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id         String     @id @default(cuid())
+  userName   String     @unique
+  avatar     String?
+  coverPic   String?
+  name       String?
+  surName    String?
+  desc       String?
+  city       String?
+  school     String?
+  work       String?
+  webSite    String?
+  posts      Post[]
+  comments   Comment[]
+  likes      Like[]
+  followers  Follower[] @relation("userFollowers")
+  followings Follower[] @relation("userFollowings")
+  status     Boolean    @default(true)
+  trash      Boolean    @default(false)
+  createdAt  DateTime   @default(now())
+  updatedAt  DateTime   @updatedAt
+
+  FollowRequestSend     FollowRequest[] @relation("followRequestSend")
+  FollowRequestReceived FollowRequest[] @relation("followRequestReceived")
+
+  blocks    BlockUser[] @relation("blockerSend")
+  blockedBy BlockUser[] @relation("blockedReceived")
+  Story     Story[]
+}
+
+model Post {
+  id        String    @id @default(cuid())
+  desc      String
+  img       String?
+  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId    String
+  comments  Comment[]
+  likes     Like[]
+  status    Boolean   @default(true)
+  trash     Boolean   @default(false)
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+}
+
+model Comment {
+  id        String   @id @default(cuid())
+  desc      String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId    String
+  post      Post     @relation(fields: [postId], references: [id], onDelete: Cascade)
+  postId    String
+  likes     Like[]
+  status    Boolean  @default(true)
+  trash     Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Like {
+  id        String   @id @default(cuid())
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId    String
+  post      Post?    @relation(fields: [postId], references: [id], onDelete: Cascade)
+  postId    String?
+  Comment   Comment? @relation(fields: [commentId], references: [id], onDelete: Cascade)
+  commentId String?
+  status    Boolean  @default(true)
+  trash     Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Follower {
+  id String @id @default(cuid())
+
+  follower   User?   @relation("userFollowers", fields: [followerId], references: [id], onDelete: Cascade)
+  followerId String?
+
+  following   User?   @relation("userFollowings", fields: [followingId], references: [id], onDelete: Cascade)
+  followingId String?
+
+  status    Boolean  @default(true)
+  trash     Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model FollowRequest {
+  id String @id @default(cuid())
+
+  sender   User?   @relation("followRequestSend", fields: [senderId], references: [id], onDelete: Cascade)
+  senderId String?
+
+  receiver   User?   @relation("followRequestReceived", fields: [receiverId], references: [id], onDelete: Cascade)
+  receiverId String?
+
+  status    Boolean  @default(true)
+  trash     Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([senderId, receiverId])
+}
+
+model BlockUser {
+  id String @id @default(cuid())
+
+  blocker   User?   @relation("blockerSend", fields: [blockerId], references: [id], onDelete: Cascade)
+  blockerId String?
+
+  blocked   User?   @relation("blockedReceived", fields: [blockedId], references: [id], onDelete: Cascade)
+  blockedId String?
+
+  status    Boolean  @default(true)
+  trash     Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([blockerId, blockedId])
+}
+
+model Story {
+  id     String  @id @default(cuid())
+  img    String
+  user   User?   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId String? @unique
+
+  status    Boolean  @default(true)
+  trash     Boolean  @default(false)
+  createdAt DateTime @default(now())
+  expiresAt DateTime
+  updatedAt DateTime @updatedAt
+}

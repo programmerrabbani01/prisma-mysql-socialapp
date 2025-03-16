@@ -1,6 +1,13 @@
+"use client";
+
+import { createAPost } from "@/actions/postActions.ts";
+// import { useUser } from "@clerk/nextjs";
 import Image from "next/image";
+import { useFormState } from "react-dom";
 
 export default function AddPost() {
+  const [state, formAction] = useFormState(createAPost, null);
+
   return (
     <>
       <div className="p-4 bg-white rounded-lg flex gap-4 justify-between text-sm shadow-md">
@@ -15,10 +22,11 @@ export default function AddPost() {
         {/* post */}
         <div className="flex-1">
           {/* text input */}
-          <div className="flex gap-4">
+          <form action={formAction} className="flex gap-4">
             <textarea
               placeholder="what's in your mind ?"
               className="bg-slate-100 rounded-lg outline-none flex-1 p-2 font-FiraCode font-medium"
+              name="desc"
             ></textarea>
             <Image
               src="/images/emoji.png"
@@ -27,7 +35,8 @@ export default function AddPost() {
               width={20}
               height={20}
             />
-          </div>
+            <button className="">Send</button>
+          </form>
           {/* post options */}
           <div className="flex items-center gap-4 mt-4 text-gray-400 flex-wrap">
             <div className="flex gap-2 items-center cursor-pointer">

@@ -3,8 +3,8 @@
 import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
 
 // Corrected path pattern
-// const isProtectedRoute = createRouteMatcher(["/", "/profile(.*)"]);
-const isProtectedRoute = createRouteMatcher([""]);
+const isProtectedRoute = createRouteMatcher(["/", "/profile(.*)"]);
+// const isProtectedRoute = createRouteMatcher([""]);
 
 export default clerkMiddleware(async (auth, req) => {
   console.log("Request URL:", req.url); // Debugging line

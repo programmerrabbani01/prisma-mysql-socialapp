@@ -1,3 +1,5 @@
+import { Post } from "@prisma/client";
+
 export type EmployeeState = unknown;
 
 export interface Employee {
@@ -7,4 +9,10 @@ export interface Employee {
   phone: string;
   createdAt: string;
   updatedAt: string;
+}
+
+export interface ActionResponse {
+  message: string;
+  post?: Post;
+  errors?: string;
 }

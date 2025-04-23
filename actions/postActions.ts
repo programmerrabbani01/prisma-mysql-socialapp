@@ -1,9 +1,13 @@
 "use server";
 
 import prisma from "@/lib/prisma.ts";
+import { ActionResponse } from "@/lib/type.ts";
 import { auth } from "@clerk/nextjs/server";
 
-export const createAPost = async (prevState, formData) => {
+export const createAPost = async (
+  prevState: ActionResponse,
+  formData: FormData
+): Promise<ActionResponse> => {
   console.log("✅ createAPost function is running...");
 
   try {
@@ -25,8 +29,11 @@ export const createAPost = async (prevState, formData) => {
     }
 
     const desc = formData.get("desc");
-    if (!desc) {
-      return { message: "Description is required", errors: "Missing desc" };
+    if (!desc || typeof desc !== "string") {
+      return {
+        message: "Description is required",
+        errors: "Missing or invalid desc",
+      };
     }
 
     // Create post
@@ -39,8 +46,10 @@ export const createAPost = async (prevState, formData) => {
 
     console.log("📝 New post created:", newPost);
     return { message: "Success", post: newPost };
-  } catch (error) {
+  } catch (error: unknown) {
+    const errorMessage =
+      error instanceof Error ? error.message : "Unknown error occurred";
     console.error("❌ Error in createAPost:", error);
-    return { message: "Failed to create new post", errors: error.message };
+    return { message: "Failed to create new post", errors: errorMessage };
   }
 };

@@ -5,8 +5,13 @@ import { createAPost } from "@/actions/postActions.ts";
 import Image from "next/image";
 import { useFormState } from "react-dom";
 
+const initialState = {
+  message: "",
+  post: undefined,
+  errors: undefined,
+};
 export default function AddPost() {
-  const [state, formAction] = useFormState(createAPost, null);
+  const [state, formAction] = useFormState(createAPost, initialState);
 
   return (
     <>
@@ -37,6 +42,12 @@ export default function AddPost() {
             />
             <button className="">Send</button>
           </form>
+          {state?.message && (
+            <p className="text-green-500 font-medium mt-2">{state.message}</p>
+          )}
+          {state?.errors && (
+            <p className="text-red-500 font-medium mt-2">{state.errors}</p>
+          )}
           {/* post options */}
           <div className="flex items-center gap-4 mt-4 text-gray-400 flex-wrap">
             <div className="flex gap-2 items-center cursor-pointer">

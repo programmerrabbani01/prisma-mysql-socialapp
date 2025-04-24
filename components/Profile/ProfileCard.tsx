@@ -1,6 +1,34 @@
+"use server";
+
+import prisma from "@/lib/prisma.ts";
+import { auth } from "@clerk/nextjs/server";
 import Image from "next/image";
 
-export default function ProfileCard() {
+export default async function ProfileCard() {
+  // Fetch authenticated user
+  const session = await auth();
+  // console.log("🔍 Clerk Auth Session:", session);
+
+  if (!session?.userId) {
+    console.error("🚨 User is not authenticated");
+    return { message: "Unauthorized", errors: "User ID is missing" };
+  }
+
+  const user = await prisma.user.findFirst({
+    where: {
+      id: session?.userId,
+    },
+    include: {
+      _count: {
+        select: {
+          followers: true,
+        },
+      },
+    },
+  });
+
+  console.log("user id is", user);
+
   return (
     <>
       <div className="p-4 bg-white rounded-lg shadow-md flex flex-col gap-6">

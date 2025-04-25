@@ -27,20 +27,31 @@ export default async function ProfileCard() {
     },
   });
 
+  if (!user) return null;
+
   console.log("user id is", user);
+
+  const isValidCover =
+    user.coverPic &&
+    user.coverPic.trim() !== "" &&
+    user.coverPic !== "No image";
+
+  // const coverPicSrc = isValidCover ? user.coverPic : "/images/cover.jpg";
+
+  const coverPicSrc = isValidCover ? user.coverPic! : "/images/cover.jpg";
 
   return (
     <>
       <div className="p-4 bg-white rounded-lg shadow-md flex flex-col gap-6">
         <div className="h-20 relative">
           <Image
-            src="/images/coverPhoto.jpg"
+            src={coverPicSrc}
             alt=""
             fill
             className="rounded-md object-cover"
           />
           <Image
-            src="/images/profilePhoto.jpg"
+            src={user.avatar || "/images/profilePhoto.jpg"}
             alt=""
             width={48}
             height={48}
@@ -48,7 +59,11 @@ export default async function ProfileCard() {
           />
         </div>
         <div className="h-20 flex flex-col items-center gap-2">
-          <span className="font-Exo2 font-semibold">G M GOLAM RABBANI</span>
+          <span className="font-Exo2 font-semibold">
+            {user.name && user.surName
+              ? user.name + " " + user.surName
+              : user.userName}
+          </span>
           <div className="flex items-center gap-4">
             <div className="flex gap-1">
               <Image
@@ -74,7 +89,7 @@ export default async function ProfileCard() {
               />
             </div>
             <span className="text-xs text-gray-500 font-FiraCode font-medium">
-              500 Flowers
+              {user._count.followers} Flowers
             </span>
           </div>
           <button className="p-2 rounded-md text-xs bg-blue-500 text-white font-FiraCode font-medium">

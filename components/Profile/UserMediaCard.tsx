@@ -1,7 +1,8 @@
+import { User } from "@prisma/client";
 import Image from "next/image";
 import Link from "next/link";
 
-export default function UserMediaCard({ userId }: { userId: string }) {
+export default function UserMediaCard({ user }: { user: User }) {
   return (
     <>
       <div className="p-4 bg-white shadow-md rounded-lg text-sm flex flex-col gap-4">

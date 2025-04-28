@@ -3,6 +3,7 @@
 import prisma from "@/lib/prisma.ts";
 import { auth } from "@clerk/nextjs/server";
 import Image from "next/image";
+import { notFound } from "next/navigation";
 
 export default async function ProfileCard() {
   // Fetch authenticated user
@@ -27,7 +28,7 @@ export default async function ProfileCard() {
     },
   });
 
-  if (!user) return null;
+  if (!user) return notFound();
 
   console.log("user id is", user);
 

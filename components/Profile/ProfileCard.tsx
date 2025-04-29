@@ -30,7 +30,7 @@ export default async function ProfileCard() {
 
   if (!user) return notFound();
 
-  console.log("user id is", user);
+  // console.log("user id is", user);
 
   const isValidCover =
     user.coverPic &&

@@ -4,6 +4,7 @@ import UserMediaCard from "../Profile/UserMediaCard.tsx";
 import Ads from "./Ads.tsx";
 import FriendsBirthday from "./FriendsBirthday.tsx";
 import FriendsRequest from "./FriendsRequest.tsx";
+import { Suspense } from "react";
 
 export default function HomeRight({ user }: { user?: User }) {
   return (
@@ -11,8 +12,12 @@ export default function HomeRight({ user }: { user?: User }) {
       <div className="flex flex-col gap-6">
         {user ? (
           <>
-            <UserInformationCard user={user} />
-            <UserMediaCard user={user} />
+            <Suspense fallback="loading...">
+              <UserInformationCard user={user} />
+            </Suspense>
+            <Suspense fallback="loading...">
+              <UserMediaCard user={user} />
+            </Suspense>
           </>
         ) : null}
         <FriendsRequest />

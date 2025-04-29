@@ -1,9 +1,54 @@
 import { formatDate } from "@/lib/formatDate.ts";
+import prisma from "@/lib/prisma.ts";
+import { auth } from "@clerk/nextjs/server";
 import { User } from "@prisma/client";
 import Image from "next/image";
 import Link from "next/link";
+import UserInfoCardInteraction from "./UserInfoCardInteraction.tsx";
 
-export default function UserInformationCard({ user }: { user: User }) {
+export default async function UserInformationCard({ user }: { user: User }) {
+  let isUserBlocked = false;
+  let isFollowing = false;
+  let isFollowingSent = false;
+
+  // Fetch authenticated user
+  const session = await auth();
+  // console.log("🔍 Clerk Auth Session:", session);
+
+  if (!session?.userId) {
+    console.error("🚨 User is not authenticated");
+    return { message: "Unauthorized", errors: "User ID is missing" };
+  }
+
+  if (session?.userId) {
+    const blockRes = await prisma.blockUser.findFirst({
+      where: {
+        blockerId: session?.userId,
+        blockedId: user.id,
+      },
+    });
+    // blockRes ? (isUserBlocked = true) : (isUserBlocked = false);
+    isUserBlocked = blockRes ? true : false;
+
+    const followRes = await prisma.follower.findFirst({
+      where: {
+        followerId: session?.userId,
+        followingId: user.id,
+      },
+    });
+
+    isFollowing = followRes ? true : false;
+
+    const followSentRes = await prisma.followRequest.findFirst({
+      where: {
+        senderId: session?.userId,
+        receiverId: user.id,
+      },
+    });
+
+    isFollowingSent = followSentRes ? true : false;
+  }
+
   return (
     <>
       <div className="p-4 bg-white shadow-md rounded-lg text-sm flex flex-col gap-4">
@@ -83,12 +128,14 @@ export default function UserInformationCard({ user }: { user: User }) {
               </span>
             </div>
           </div>
-          <button className="bg-blue-500 text-white font-Exo2 font-semibold rounded-lg p-2 text-sm">
-            Follow
-          </button>
-          <span className="text-xs text-red-400 font-FiraCode font-medium cursor-pointer self-end">
-            Block User
-          </span>
+
+          <UserInfoCardInteraction
+            userId={user.id}
+            currentUserId={session?.userId}
+            isUserBlocked={isUserBlocked}
+            isFollowing={isFollowing}
+            isFollowingSent={isFollowingSent}
+          />
         </div>
       </div>
     </>
